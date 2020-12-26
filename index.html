@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>感染リスク計算機</title>
+</head>
+<body style="text-align: center;">
+    <h2>感染リスク計算機</h2>
+    <table border="0" cellspacing="2" style="margin-left: auto;margin-right: auto;">
+        <tr>
+            <td>人口</td>
+            <td><input id="jinkou1" value="125710000"></td>
+        </tr>
+        <tr>
+            <td>一日の感染者数</td>
+            <td><input id="kannsennsya1" value="3800"></td>
+        </tr>
+        <tr>
+            <td>潜伏期間</td>
+            <td><input id="senpuku1" value="14"></td>
+        </tr>
+        <tr>
+            <td>イベント人数</td>
+            <td><input id="ninnzuu1" value="30"></td>
+        </tr>
+    </table>
+    <br>
+    <table border="0" cellspacing="8" style="margin-left: auto;margin-right: auto;background-color: rgb(220, 255, 255);">
+        <tr><td>感染リスク</td><td><a id="kannsennrisuku"></a></td></tr>
+        <tr><td>容疑リスク</td><td><a id="yougirisuku"></a></td></tr>
+    </table>
+    <img src="./img/note.png" style="width: 500px;height: auto;"><br>
+    <a href="https://kangping.jp/contact/">お問い合わせ</a>
+    <script>
+        var jinkou = 0
+        var kannsennsya = 0
+        var sennpuku = 0
+        var ninnsuu = 0
+        function keisan(){
+            jinnkou = document.getElementById("jinkou1").value
+            kannsennsya = document.getElementById("kannsennsya1").value
+            sennpuku = document.getElementById("senpuku1").value
+            ninnzuu = document.getElementById("ninnzuu1").value
+            document.getElementById("kannsennrisuku").innerText = Math.floor(((1 - Math.pow(1 - kannsennsya / jinnkou , ninnzuu)) * 100) * 100) / 100 + "%"
+            document.getElementById("yougirisuku").innerText = Math.floor(((1-Math.pow(1 - kannsennsya / jinnkou , ninnzuu * sennpuku))*100) * 100) / 100 + "%"
+        }
+        setInterval(keisan,0)
+    </script>
+</body>
+</html>
