@@ -104,7 +104,7 @@
         </tr>
         <tr>
             <td>一日の感染者数(人)</td>
-            <td><input id="kannsennsya1" type="number" value="3841" style="width: 80px;"></td>
+            <td><input id="kannsennsya1" type="number" value="4883" style="width: 80px;"></td>
         </tr>
         <tr>
             <td id="sennpukukikann_moji">潜伏期間(日)</td>
@@ -116,15 +116,18 @@
         </tr>
     </table>
     <br>
-    <table border="0" cellspacing="8" style="margin-left: auto;margin-right: auto;background-color: rgb(220, 255, 255);">
+    <table border="0" cellspacing="0" style="margin-left: auto;margin-right: auto;background-color: rgb(220, 255, 255);">
         <tr><td>誰かが感染するリスク</td><td><a id="kannsennrisuku"></a></td></tr>
-        <tr><td id="str1">容疑リスク</td><td><a id="yougirisuku"></a></td></tr>
+        <tr style="font-size: 10pt;"><td>(誰も感染しない確率</td><td id="kannsennsinai"></td></tr>
+        <tr><td id="str1">感染を疑われるリスク</td><td><a id="yougirisuku"></a></td></tr>
+        <tr style="font-size: 10pt;"><td id="yougirotu2">(誰も感染しない確率</td><td><a id="str2">  </a></td></tr>
     </table>
-    <img src="./note.png" style="width: 400px;height: auto;"><br>
+    <img src="./img/note.png" style="width: 400px;height: auto;"><br>
     #最前線にエールを何度でも<br>
     #医療従事者の方々に感謝<br>
     #優しい心<br>
     #間違っていたらお知らせください<br>
+    <a href="https://github.com/kangping-git/risk" target="_blank">This software is distributed in the MIT Lincence.</a><br>
     <a style="font-size: 10pt;">powerd by <a href="https://kangping.jp/" target="_blank" style="font-size: 10pt;">カンピンの部屋</a></a>
     <script>
         var jinkou = 0
@@ -140,7 +143,7 @@
                 document.getElementById("jinkou1").value = list[document.getElementById("iti").value]
                 //document.getElementById("kannsennsya1").value = list2[document.getElementById("iti").value]
                 if (document.getElementById("iti").value == 0){
-                    document.getElementById("kannsennsya1").value = 3841
+                    document.getElementById("kannsennsya1").value = 4883
                 }else{
                     document.getElementById("kannsennsya1").value = 0
                 }
@@ -154,13 +157,19 @@
             ninnzuu = document.getElementById("ninnzuu1").value
             if (document.getElementById("a_0").checked){
                 document.getElementById("kannsennrisuku").innerText = Math.floor(((1 - Math.pow(1 - kannsennsya / jinnkou , ninnzuu)) * Math.pow(10,2)) * 100) / Math.pow(10,2) + "%"
+                document.getElementById("kannsennsinai").innerText = Math.floor(10000-(((1-Math.pow(1 - kannsennsya / jinnkou , ninnzuu * sennpuku))* Math.pow(10,2)) * 100)) /  Math.pow(10,2) + "%)"
                 document.getElementById("yougirisuku").innerText = Math.floor(((1-Math.pow(1 - kannsennsya / jinnkou , ninnzuu * sennpuku))* Math.pow(10,2)) *  100) / Math.pow(10,2) + "%"
+                document.getElementById("yougirotu2").innerText = "(感染が疑われない確率"
+                document.getElementById("str2").innerText = Math.floor(10000-(((1-Math.pow(1 - kannsennsya / jinnkou , ninnzuu * sennpuku))* Math.pow(10,2)) *  100)) / Math.pow(10,2) + "%)"
                 document.getElementById("sennpukukikann_moji").innerText = "潜伏期間(日)"
                 document.getElementById("eventninnzuu_moji").innerText = "イベント人数(人)"
                 document.getElementById("str1").innerText = "感染を疑われるリスク"
             }else{
                 document.getElementById("kannsennrisuku").innerText = Math.floor(((1-Math.pow(1 - kannsennsya / jinnkou , ninnzuu * sennpuku))* Math.pow(10,2)) * 100) /  Math.pow(10,2) + "%"
+                document.getElementById("kannsennsinai").innerText = Math.floor(10000-(((1-Math.pow(1 - kannsennsya / jinnkou , ninnzuu * sennpuku))* Math.pow(10,2)) * 100)) /  Math.pow(10,2) + "%)"
                 document.getElementById("yougirisuku").innerText = ""
+                document.getElementById("yougirotu2").innerText = ""
+                document.getElementById("str2").innerText = ""
                 document.getElementById("sennpukukikann_moji").innerText = "期間(日)"
                 document.getElementById("eventninnzuu_moji").innerText = "家族等の人数(人)"
                 document.getElementById("str1").innerText = ""
