@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>感染リスク計算機</title>
+</head>
+<body style="text-align: center;">
+    <h2>
+    <table border="0" cellspacing="5" style="text-align: left; margin-left: auto;margin-right: auto;width: 400px;">
+        <tr><td><label><input type="radio" name="ivent_or_katei" value="1" onclick="aaaa(0)" checked>家庭等での感染リスク</label></td></tr>
+        <tr><td><label><input type="radio" id="a_0" name="ivent_or_katei" onclick="aaaa(1)" value="0">イベント等の感染リスク</label></td></tr>
+    </table>
+    </h2>
+    <table border="0" cellspacing="2" style="margin-left: auto;margin-right: auto;">
+        <tr>
+            <td>人口(人)</td>
+            <td><input id="jinkou1" type="number" value="127144749" style="width: 80px;"></td>
+            <td><select name="iti" onclick="aaa()" id="iti">
+                <optgroup label="世界">
+                    <option value="49">世界</option>
+                    <optgroup label="日本(12月30日現在)">
+                        <option value="0" selected>日本</option>
+                        <optgroup label="北海道地方">
+                            <option value="1">北海道</option>
+                        </optgroup>
+                        <optgroup label="東北地方">
+                            <option value="2">青森</option>
+                            <option value="3">岩手</option>
+                            <option value="4">宮城</option>
+                            <option value="5">秋田</option>
+                            <option value="6">山形</option>
+                            <option value="7">福島</option>
+                        </optgroup>
+                        <optgroup label="関東地方">
+                            <option value="8">茨城</option>
+                            <option value="9">栃木</option>
+                            <option value="10">群馬</option>
+                            <option value="11">埼玉</option>
+                            <option value="12">千葉</option>
+                            <option value="13">東京</option>
+                            <option value="14">神奈川</option>
+                        </optgroup>
+                        <optgroup label="関東甲信越">
+                            <option value="15">新潟</option>
+                            <option value="16">山梨</option>
+                            <option value="17">長野</option>
+                        </optgroup>
+                        <optgroup label="東海地方">
+                            <option value="18">岐阜</option>
+                            <option value="19">静岡</option>
+                            <option value="20">愛知</option>
+                            <option value="21">三重</option>
+                        </optgroup>
+                        <optgroup label="北陸地方">
+                            <option value="22">富山</option>
+                            <option value="23">石川</option>
+                            <option value="24">福井</option>
+                        </optgroup>
+                        <optgroup label="関西地方">
+                            <option value="25">滋賀</option>
+                            <option value="26">京都</option>
+                            <option value="27">大阪</option>
+                            <option value="28">兵庫</option>
+                            <option value="29">奈良</option>
+                            <option value="30">和歌山</option>
+                        </optgroup>
+                        <optgroup label="中国地方">
+                            <option value="31">鳥取</option>
+                            <option value="32">島根</option>
+                            <option value="33">岡山</option>
+                            <option value="34">広島</option>
+                            <option value="35">山口</option>
+                        </optgroup>
+                        <optgroup label="四国地方">
+                            <option value="36">徳島</option>
+                            <option value="37">香川</option>
+                            <option value="38">愛媛</option>
+                            <option value="39">高知</option>
+                        </optgroup>
+                        <optgroup label="九州地方">
+                            <option value="40">福岡</option>
+                            <option value="41">佐賀</option>
+                            <option value="42">長崎</option>
+                            <option value="43">熊本</option>
+                            <option value="44">大分</option>
+                            <option value="45">宮崎</option>
+                            <option value="46">鹿児島</option>
+                        </optgroup>
+                        <optgroup label="沖縄地方">
+                            <option value="47">沖縄</option>
+                        </optgroup>
+                    </optgroup>
+                    <optgroup label="ほかの国">
+                        <option value="50">アメリカ</option>
+                        <option value="51">イギリス</option>
+                        <option value="48">中国</option>
+                        <option value="52">大韓民国</option>
+                        <option value="53">インド</option>
+                        <option value="54">ロシア</option>
+                    </optgroup>
+                </optgroup>
+            </select></td>
+        </tr>
+        <tr>
+            <td>一日の感染者数(人)</td>
+            <td><input id="kannsennsya1" type="number" value="4883" style="width: 80px;"></td>
+        </tr>
+        <tr>
+            <td id="sennpukukikann_moji">潜伏期間(日)</td>
+            <td><input id="senpuku1" type="number" value="30" style="width: 80px;"></td>
+        </tr>
+        <tr>
+            <td id="eventninnzuu_moji">イベント人数</td>
+            <td><input id="ninnzuu1" type="number" value="4" style="width: 80px;"></td>
+        </tr>
+    </table>
+    <br>
+    <table border="0" cellspacing="0" style="margin-left: auto;margin-right: auto;background-color: rgb(220, 255, 255);">
+        <tr><td>誰かが感染するリスク</td><td><a id="kannsennrisuku"></a></td></tr>
+        <tr style="font-size: 10pt;"><td>(誰も感染しない確率</td><td id="kannsennsinai"></td></tr>
+        <tr><td id="str1">感染を疑われるリスク</td><td><a id="yougirisuku"></a></td></tr>
+        <tr style="font-size: 10pt;"><td id="yougirotu2">(誰も感染しない確率</td><td><a id="str2">  </a></td></tr>
+    </table>
+    <img src="./img/note.png" style="width: 400px;height: auto;"><br>
+    <div style="width: 400px;margin-left: auto;margin-right: auto;text-align: left;">
+        #最前線にエールを何度でも<br>
+        #医療従事者の方々に感謝<br>
+        #優しい心<br>
+        #間違っていたらお知らせください<br>
+    </div><br>
+    <a href="https://github.com/kangping-git/risk" target="_blank">This software is distributed in the MIT Lincence.</a><br>
+    <a style="font-size: 10pt;">powerd by <a href="https://kangping.jp/" target="_blank" style="font-size: 10pt;">カンピンの部屋</a></a>
+    <script>
+        var jinkou = 0
+        var kannsennsya = 0
+        var sennpuku = 0
+        var ninnsuu = 0
+        var mae = 0
+        var list = [127144749,5475783,1373339,1279594,2333899,1023119,1123891,1914039,2916976,1974255,1973115,7266534,6222666,13515271,9126214,2304264,834930,2098804,2031903,3700305,7483128,1816865,1066328,1154008,786740,1412916,2610353,8839469,5534800,1364316,963579,573441,694352,1921525,2843990,1404729,755733,976263,1385262,728276,5151560,832832,1377187,1786170,1166338,1104069,1648177,1433566,1400050000,7700000000,327750000,66435600,51845612
+    ,1334220000,145934000]
+        //varlist2 = [3571,87,15,1,39,6,9,11,43,83,29,300,216,856,395,15,10,11,74,27,235,11,2,10,2,26,84,302,193,24,2,0,8,14,3,23,72,24,0,8,14,151,7,27,43,4,8,40,0]
+        function aaa(){
+            if (mae != document.getElementById("iti").value){
+                document.getElementById("jinkou1").value = list[document.getElementById("iti").value]
+                //document.getElementById("kannsennsya1").value = list2[document.getElementById("iti").value]
+                if (document.getElementById("iti").value == 0){
+                    document.getElementById("kannsennsya1").value = 4883
+                }else{
+                    document.getElementById("kannsennsya1").value = 0
+                }
+                mae = document.getElementById("iti").value
+            }
+        }
+        function keisan(){
+            jinnkou = document.getElementById("jinkou1").value
+            kannsennsya = document.getElementById("kannsennsya1").value
+            sennpuku = document.getElementById("senpuku1").value
+            ninnzuu = document.getElementById("ninnzuu1").value
+            if (document.getElementById("a_0").checked){
+                document.getElementById("kannsennrisuku").innerText = Math.floor(((1 - Math.pow(1 - kannsennsya / jinnkou , ninnzuu)) * Math.pow(10,2)) * 100) / Math.pow(10,2) + "%"
+                document.getElementById("kannsennsinai").innerText = Math.floor(10000-(((1-Math.pow(1 - kannsennsya / jinnkou , ninnzuu * sennpuku))* Math.pow(10,2)) * 100)) /  Math.pow(10,2) + "%)"
+                document.getElementById("yougirisuku").innerText = Math.floor(((1-Math.pow(1 - kannsennsya / jinnkou , ninnzuu * sennpuku))* Math.pow(10,2)) *  100) / Math.pow(10,2) + "%"
+                document.getElementById("yougirotu2").innerText = "(感染が疑われない確率"
+                document.getElementById("str2").innerText = Math.floor(10000-(((1-Math.pow(1 - kannsennsya / jinnkou , ninnzuu * sennpuku))* Math.pow(10,2)) *  100)) / Math.pow(10,2) + "%)"
+                document.getElementById("sennpukukikann_moji").innerText = "潜伏期間(日)"
+                document.getElementById("eventninnzuu_moji").innerText = "イベント人数(人)"
+                document.getElementById("str1").innerText = "感染を疑われるリスク"
+            }else{
+                document.getElementById("kannsennrisuku").innerText = Math.floor(((1-Math.pow(1 - kannsennsya / jinnkou , ninnzuu * sennpuku))* Math.pow(10,2)) * 100) /  Math.pow(10,2) + "%"
+                document.getElementById("kannsennsinai").innerText = Math.floor(10000-(((1-Math.pow(1 - kannsennsya / jinnkou , ninnzuu * sennpuku))* Math.pow(10,2)) * 100)) /  Math.pow(10,2) + "%)"
+                document.getElementById("yougirisuku").innerText = ""
+                document.getElementById("yougirotu2").innerText = ""
+                document.getElementById("str2").innerText = ""
+                document.getElementById("sennpukukikann_moji").innerText = "期間(日)"
+                document.getElementById("eventninnzuu_moji").innerText = "家族等の人数(人)"
+                document.getElementById("str1").innerText = ""
+            }
+            aaa()
+        }
+        function aaaa(a){
+            if (a == 0){
+                document.getElementById("senpuku1").value = 30
+                document.getElementById("ninnzuu1").value = 4
+            }else{
+                document.getElementById("senpuku1").value = 14
+                document.getElementById("ninnzuu1").value = 30
+            }
+        }
+        setInterval(keisan,0)
+    </script>
+</body>
+</html>
